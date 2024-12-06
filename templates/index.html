@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="../static/styles/images/favicon.png" type="image/x-icon">
+    <title>- Добро Пожаловать -</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index-sheet.css') }}">
+    <style>
+
+        .flash-message {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: white;
+        }
+        .flash-message.error {
+            background-color: #f44336; /* Красный */
+        }
+        .flash-message.success {
+            background-color: #4CAF50; /* Зеленый */
+        }
+        .flash-message.warning {
+            background-color: #ff9800; /* Оранжевый */
+        }
+        .flash-message.info {
+            background-color: #2196F3; /* Синий */
+        }
+
+    </style>
+</head>
+
+<body>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div id="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+<a href="/about" class="about-project-btn" aria-label="О проекте" target="_blank">О проекте</a>
+
+
+<section id="chatSection" class="hero">
+    <div class="chat-icon">
+        <img src="../static/styles/images/light_chat_icon.jpg" alt="Start Chat">
+    </div>
+    <h2 id="chatText">Привет!</h2>
+    <button class="cta-button" id="chatButton" aria-label="Начать чат">Начать чат</button>
+
+</section>
+
+<!-- Модальное окно -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Авторизация</h2>
+        <p id="error" class="error"></p>
+        <input type="text" id="username" placeholder="Логин">
+        <input type="password" id="password" placeholder="Пароль">
+        <button id="loginButton">Войти</button>
+    </div>
+</div>
+
+<section id="about" class="section" style="margin-top: 80px;">
+    <h3 id="aboutTitle">Об инструменте</h3>
+    <p id="aboutText">Данный ИИ(Искусственный Интеллект) предназначен для упрощения анализа рабочих документов. Достаточно выбрать необходимые файлы, и система автоматически обработает их, извлекая ключевые данные, структурируя информацию и предлагая рекомендации. Идеально подходит для анализа отчетов, контрактов, справок и других важных документов.</p>
+</section>
+
+<section id="about" class="section">
+    <h3 id="aboutTitle">Как пользоваться?</h3>
+    <p id="aboutText"> Для эффективного взаимодействия с инструментом важно четко формулировать свои запросы. Убедитесь, что ваши вопросы к ИИ ясны и конкретны. Это поможет системе точнее анализировать содержимое и предоставлять более релевантные и подробные ответы. Например, уточните, какую информацию вы хотите извлечь или какие аспекты документа вас интересуют. Чем точнее запрос, тем более полезным и точным будет результат. </p>
+</section>
+
+<section id="about" class="section">
+    <h3 id="aboutTitle">Правила использования</h3>
+    <p id="aboutText"> Несмотря на то, что это искусственный интеллект, разговаривайте уважительно и профессионально. Соблюдайте конфиденциальность как своих данных, так и данных других людей. Всегда проверяйте информацию, предоставленную ИИ. Помните, что все могут совершать ошибки, в том числе и искусственный интеллект. Хоть точность анализа и высока, система может интерпретировать данные неверно или дать обобщённый ответ. Для принятия важных решений рекомендуется перепроверять результаты и использовать их как одно из мнений, а не единственный источник истины. Использование системы должно соответствовать этическим стандартам и законам Республики Казахстан. </p>
+</section>
+
+<section id="about" class="section">
+    <h3 id="aboutTitle">Нет аккаунта?</h3>
+    <p id="aboutText">Если у вас нет аккаунта для работы с ИИ, обратитесь к вашему руководителю или администратору системы. Они помогут вам зарегистрироваться и предоставят всю необходимую информацию для начала работы.</p>
+</section>
+
+<footer>
+    <p id="footerText">2024. Все права защищены!</p>
+</footer>
+
+<button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
+<script src="{{ url_for('static', filename='scripts-js/index.js') }}"></script>
+
+
+</body>
+</html>

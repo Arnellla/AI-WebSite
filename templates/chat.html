@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> - Ассистент - </title>
+    <link rel="icon" href="../static/styles/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/chat-sheet.css') }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.10/dist/purify.min.js"></script>
+
+</head>
+<body>
+<img src="../static/styles/images/logo.png" alt="Логотип" class="logo">
+
+<div class="container">
+    <main>
+        <div class="chat-box" id="chat-box">
+            <div class="message bot">Чем могу помочь?</div>
+        </div>
+
+        <form id="chat-form">
+            <button id="settings-btn" class="settings-btn">
+                <i class="fas fa-cog"></i>
+            </button>
+            <textarea id="user-input" rows="1" maxlength="8000" placeholder=" Спросить..." autocomplete="off"></textarea>
+            <button type="submit" disabled>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </form>
+    </main>
+
+    <div id="settings-panel" class="settings-panel">
+        <label style="color:white;">Документы:</label>
+        <div id="document-container">
+            <label style="color:white;"></label>
+
+            <input type="text" id="search-input" placeholder="Поиск по файлам..." style="width: 100%; padding: 5px; margin-bottom: 10px;">
+
+            <div id="file-list-container" style="max-height: 300px; overflow-y: auto;"></div>
+
+            <div class="panel-buttons">
+                <button id="admin-btn" class="settings-btn-action">Админ</button>
+            </div>
+            <div class="panel-button">
+                <button id="logout-btn" class="settings-btn-action">Выход</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="scroll-down-btn" class="scroll-down-btn" style="display: none;">
+        <i class="fas fa-arrow-down"></i>
+    </button>
+
+</div>
+
+<script src="{{ url_for('static', filename='scripts-js/chat.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: auto;
+}
+
+.chat-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+    padding: 10px;
+    color: #f1f1f1;
+}
+
+.message {
+    margin-bottom: 25px;
+    max-width: 93%;
+    word-wrap: break-word;
+    animation: fadeIn 0.35s ease;
+    z-index: 5;
+}
+
+.bot, .user {
+    padding: 10px;
+    border-radius: 10px;
+    animation: fadeIn 0.35s ease;
+}
+
+.bot {
+    align-self: flex-start;
+    background-color: #2e2e2e;
+}
+
+.user {
+    align-self: flex-end;
+    background-color: #6200ea;
+    color: white;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    background-color: #2b2b2b;
+    border-radius: 20px;
+    padding: 5px;
+    margin-top: 0;
+    position: relative;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(0.8);
+    transform-origin: center;
+}
+
+textarea {
+    flex: 1;
+    padding: 15px 50px;
+    background-color: #3e3e3e;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #f1f1f1;
+    resize: none;
+    max-height: 150px;
+    overflow-y: auto;
+    outline: none;
+    transition: height 0.2s ease;
+}
+
+textarea::-webkit-scrollbar,
+.chat-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+textarea::-webkit-scrollbar-thumb,
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-track,
+.chat-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+button {
+    background-color: #fff;
+    border: none;
+    color: black;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+}
+
+button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+button:enabled:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.1);
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+    color: #f1f1f1;
+}
+
+strong {
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    margin: 10px 0 20px;
+    border-collapse: collapse;
+    background-color: #333;
+    color: #f1f1f1;
+}
+
+th, td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #444;
+}
+
+td {
+    background-color: #555;
+}
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+}
+
+.message ol, .message ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.message ol li, .message ul li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.message ol ol, .message ul ul {
+    padding-left: 20px;
+}
+
+.message p, .message h1, .message h2, .message h3, .message h4, .message h5, .message h6 {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dot {
+    height: 5px;
+    width: 5px;
+    margin: 0 3px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    display: inline-block;
+    animation: blink 1.4s infinite both;
+}
+
+.dot:nth-child(1) { animation-delay: 0s; }
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+    0% { opacity: 0.2; }
+    20% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.settings-btn {
+    background-color: #2b2b2b;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    z-index: 100;
+}
+
+.settings-btn:hover {
+    background-color: #444;
+}
+
+.settings-panel {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: #2b2b2b;
+    padding: 20px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    transition: bottom 0.5s ease;
+    z-index: 99;
+    overflow: hidden;
+}
+
+.panel-buttons {
+    position: absolute;
+    top: 60px;
+    right: 6.3%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+}
+
+.panel-button {
+    position: absolute;
+    top: 60px;
+    right: 1%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+}
+
+@media (max-width: 768px) {
+    .panel-button {}
+    .panel-buttons {right: 13.5%;}
+}
+
+.settings-btn-action {
+    background-color: #8a63bd;
+    color: #000000;
+    padding: 10px 20px;
+    border: none;
+    font-size: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.settings-btn-action:hover {
+    background-color: #4c2e93;
+}
+
+.settings-panel.show {
+    bottom: 0;
+}
+
+.settings-panel label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#document-container {
+    background-color: #2b2b2b;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#search-input {
+    background-color: #3e3e3e;
+    border: none;
+    color: #f1f1f1;
+    border-radius: 5px;
+}
+
+#file-list-container {
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #333;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#file-list-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+#file-list-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+#file-list-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+details {
+    margin-bottom: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #444;
+    color: #f1f1f1;
+}
+
+details ul {
+    margin-top: 10px;
+}
+
+summary {
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+summary::before {
+    content: '\25B6';
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+
+.summary::before {
+    content: '\25B6';
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.scroll-down-btn {
+    position: fixed;
+    bottom: 10%;
+    right: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    z-index: 98;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.2;
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@media (min-width: 1920px) {
+    body { font-size: 18px; }
+    .settings-panel { padding: 30px; }
+    .panel-buttons {right: 4%;}
+}
+
+@media (min-width: 2560px) {
+    body { font-size: 20px; }
+    .settings-panel { padding: 40px; }
+    .panel-buttons {right: 3%;}
+}
+
+@media (min-width: 3840px) {
+    body { font-size: 30px; }
+    .settings-panel { padding: 50px; }
+    .panel-buttons {right: 3%;}
+}
+
+@media (min-width: 5120px) {
+    body { font-size: 40px; }
+    .settings-panel { padding: 60px; }
+    .panel-buttons {right: 2%;}
+}
+
+a.view-link {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    margin-left: 0;
+}
+
+a.view-link:hover {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: underline;
+}
+
